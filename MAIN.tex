@@ -1,0 +1,223 @@
+%% by Philipp.Schneider@ifp.uni-stuttgart.de
+%% 17.01.22 Created
+
+\documentclass[a4paper,twoside]{book}%[draft]
+\usepackage[a4paper]{geometry}
+
+\usepackage{etoolbox}
+\patchcmd{\chapter}{\thispagestyle{plain}}{\thispagestyle{fancy}}{}{}
+
+
+% define head and food style
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
+\renewcommand{\sectionmark}[1]{ \markright{#1} }
+\fancyhead[RO]{\thepage}
+\fancyhead[LO]{\textit{ \nouppercase{\leftmark}} }
+\fancyhead[RE]{\textit{ \nouppercase{\rightmark}} }
+\fancyhead[LE]{\thepage}
+
+\fancypagestyle{plain}{
+\fancyhf{}
+\fancyhead[RO]{\thepage}
+%\fancyhead[LO]{\textit{ \nouppercase{\leftmark}} }
+%\fancyhead[RE]{\textit{ \nouppercase{\rightmark}} }
+\fancyhead[LE]{\thepage}
+}
+
+
+\usepackage{afterpage}
+\usepackage{setspace}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{auto-pst-pdf}
+\usepackage{psfrag}
+\usepackage{graphicx}
+\usepackage{upquote}
+\usepackage{textcomp}
+\usepackage{algorithm,algcompatible,algorithmicx}
+\usepackage{caption}
+\usepackage{epstopdf}
+\usepackage{color,soul}
+\usepackage[font=small,labelfont=it]{caption}
+
+
+\usepackage{units}
+\usepackage{color}
+\usepackage{multicol}
+\usepackage{multirow}             % (\usepackage[longtable]{multirow}, wenn zusammen mit longtable package verwendet wird.
+\usepackage{adjustbox}
+\usepackage{placeins}
+\usepackage{subcaption}
+\usepackage{caption}
+\usepackage{tikz}
+\usepackage{tikz-imagelabels}
+\usetikzlibrary{fit}
+\usetikzlibrary{positioning}
+\usepackage{ctable}
+\usepackage{url}                   % Behebt Fehlermeldung von bibtext bei urls in den bib einträgen.
+\usepackage{acronym}
+\usepackage{mathtools}
+\usepackage{nicefrac}
+\usepackage{hyperref}   % false to remove all links
+\hypersetup{
+linkbordercolor  = {gray},
+citebordercolor   ={green},
+urlbordercolor   = {blue}
+}
+\usepackage[normalem]{ulem}        % text durchstreichen mit \sout
+\usepackage{booktabs}              % for nicer tables (horizontal lines)
+\usepackage[bottom]{footmisc}      % so that [b] floats are above footnotes
+
+\usepackage{blindtext}	% }\blindtext: lorem ipsum
+
+
+\usepackage{algpseudocode}
+
+
+\usepackage{natbib}
+%% Semikolon als Trennzeichen bei Multi-Zitaten:
+\usepackage{breakcites}
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@citex}{,}{;}{}{}
+\makeatother
+
+
+
+
+\setcounter{secnumdepth}{3}                   % Subsubsections in Numerierung aufnehmen:
+
+
+% define the blue \todo command
+\definecolor{lightblue}{rgb}{0.4,0.4,1}
+%\newcommand\todo[1]{\textcolor{blue}{#1}}
+\newcommand{\todo}[1]{{\color{red}#1}}       % erlaubt auch mehrere paragraphen inerhalb eines \todo
+\newcommand{\asd}[1]{{\color{lightblue}#1}}   % erlaubt auch mehrere paragraphen inerhalb eines \todo
+\newcommand{\temphead}[1]{\vspace*{-1.1em}\subsubsection*{\textit{\color{blue}#1}}\vspace*{-1.1em}}
+\newcommand*\rot{\rotatebox{90}}
+
+
+
+
+
+%% declare more math operators e.g.:
+\DeclareMathOperator*{\ReLU}{ReLU} 
+\newcommand{\amat}{\mathbf{a}}
+
+%% define blankpage - nothing
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+\sloppy
+
+\begin{document}
+
+\clubpenalty = 10000
+\widowpenalty = 10000
+\displaywidowpenalty = 10000
+
+%\maketitle
+\include{title_page}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Here goes German and English abstracts
+\include{abstract}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ich bevorzuge Abstand zwischen Paragraphen (Aber erst nach Table of Contents + fürs Abstract):
+%\setlength{\parindent}{0em}
+\setlength{\parskip}{0em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%\afterpage{\blankpage}
+\cleardoublepage
+\tableofcontents
+
+
+%%% Acronyme
+\cleardoublepage
+\chapter*{Acronyms}  \addcontentsline{toc}{chapter}{\protect\numberline{}Acronyms}
+% sort this manualy (in the end)
+\begin{acronym}[Bash]
+	\acro{LiDAR}{Light Detection and Ranging}
+	\acro{ALS}{Airborne Laser Scanning}
+	\acro{SAR}{Synthetic Aperture Radar}
+	% 	\acro{SHORT}{LONG}
+	%% add more
+\end{acronym}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ich bevorzuge Abstand zwischen Paragraphen (Aber erst nach Table of Contents + fürs Abstract):
+\setlength{\parskip}{0.7em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%% Here goes motivation, objectives and outline
+\include{introduction}
+
+
+%%% Here comes related work chapter
+\include{related_work}
+\FloatBarrier
+
+%%% Cahpter 1
+\include{chapter1}
+\FloatBarrier
+
+%%% Cahpter 2
+\include{chapter2}
+\FloatBarrier
+
+%%% Cahpter 3
+\include{chapter3}
+\FloatBarrier
+
+%%% Conclusion
+\include{conclusion}
+
+%%% Appendix
+\include{appendix}
+
+
+
+%\nociteMyPublicationsA{*}
+%\bibliographyMyPublicationsA{MyPublicationsA}
+%\bibentry{SchmohlSoergel2019}
+
+
+{
+\small
+\bibliographystyle{apalike}   % 
+\addcontentsline{toc}{chapter}{\protect\numberline{}Bibliography}
+\bibliography{my_bibliography} % change for your .bib file
+
+
+\normalsize
+}
+
+%%% Acknowledgements
+\cleardoublepage
+\thispagestyle{empty}
+\include{thanks}
+
+%%% CV
+\cleardoublepage
+\thispagestyle{empty}
+\include{curriculum_vitae}
+
+\end{document}
+
+
