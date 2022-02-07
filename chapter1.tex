@@ -5,7 +5,7 @@ Cite stuff from the .bib file.
 
 Cite in text \cite{CostantiniPSP}, Cite with brackets \citep{Schneider2021b}, cite multiple publications from the same authors \cite{Schneider2021b,Schneider2021a} / \citep{Schneider2021b,Schneider2021a} or different \citep{Schneider2021b,CostantiniPSP} / \cite{Schneider2021b,CostantiniPSP}. 
 
-Cite a specific page:  \cite[see][page]{Schneider2021b}, or chapter \cite[compare ][p. 42]{Schneider2021a} 
+Cite a specific page:  \cite[see][p. 42]{Schneider2021b}, or chapter \cite[compare ][Ch. 3]{Schneider2021a} 
 
 \section{Foot notes}
 The end of internet can be visited\footnote{\url{http://endoftheinternet.com/}}. 
@@ -71,7 +71,58 @@ You can refer to a Table CHAPTER.NUMBER: Table \ref{tab:example1}. You find nice
 \label{tab:example1}
 \end{table}
 
-
+\begin{table*}[!b]
+	\begin{centering}
+		\begin{adjustbox}{max width=\textwidth}
+			\begin{tabular}{llcccccl}
+				\toprule
+				& & & & & \multicolumn{2}{c}{Attributes} &  \\ \cline{6 - 7} \rule{0pt}{2.5ex}
+				Data Set & Split & \# Points [Mio] & Area [km$^2$] & Density [pts/m$^2$] & LiDAR & Color & Classes \\
+				\toprule
+				
+				\multirow{3}{*}{\textbf{V3D}} &
+				\multirow{3}{*}{\shortstack[l]{train \\ test}} &
+				\multirow{3}{*}{\shortstack[l]{0.754 \\ 0.412}} &
+				\multirow{3}{*}{\shortstack[l]{0.084  \\ 0.046}} &
+				\multirow{3}{*}{3}  &
+				\multirow{3}{*}{\shortstack[l]{Intensity, \\ Echo Number, \\\# Echos}} &
+				\multirow{3}{*}{CIR} &
+				\multirow{3}{*}{\shortstack[l]{\textit{Powerline}, \textit{Low Vegetation}, \textit{Impervious Surface}, \\ \textit{Car}, \textit{Fence/Hedge}, \textit{Roof}, \textit{Fa\c{c}ade}, \textit{Shrub}, \textit{Tree} }} \\
+				& & & & &  & & \\
+				& & & & & & & \\
+				\midrule	
+				
+				\multirow{3}{*}{\textbf{H3D}} &
+				\multirow{3}{*}{\shortstack[l]{train \\ \rule{0pt}{0.0001cm} \\ test}} &
+				\multirow{3}{*}{\shortstack[l]{73.909 \\ \rule{0pt}{0.0001cm} \\ 51.745}} &
+				\multirow{3}{*}{\shortstack[l]{0.030 \\ \rule{0pt}{0.0001cm} \\ 0.031}} &
+				\multirow{3}{*}{3}  &
+				\multirow{3}{*}{\shortstack[l]{Reflectance, \\ Echo Number, \\\# Echos}} &
+				\multirow{3}{*}{RGB} &
+				\multirow{3}{*}{\shortstack[l]{\textit{Low Vegetation}, \textit{Impervious Surface}, \textit{Vehicle},  \\ \textit{Urban Furniture}, \textit{Roof}, \textit{Fa\c{c}ade}, \textit{Shrub}, \textit{Tree}, \\ \textit{Soil/Gravel}, \textit{Vertical Surface}, \textit{Chimney} }} \\
+				& & & & &  & & \\
+				& & & & & & & \\
+				\midrule	
+				
+				\multirow{3}{*}{\textbf{S3D}} &
+				\multirow{3}{*}{\shortstack[l]{train \\ \rule{0pt}{0.0001cm} \\ test}} &
+				\multirow{3}{*}{\shortstack[l]{38.511 \\ \rule{0pt}{0.0001cm} \\ 40.417}} &
+				\multirow{3}{*}{\shortstack[l]{1.819 \\ \rule{0pt}{0.0001cm} \\ 2.179}} &
+				\multirow{3}{*}{3}  &
+				\multirow{3}{*}{\shortstack[l]{Intensity, \\ Echo Number, \\\# Echos}} &
+				\multirow{3}{*}{RGB} &
+				\multirow{3}{*}{\shortstack[l]{\textit{Urban Furniture}, \textit{Ground},  \textit{Building},  \textit{Tree} }} \\
+				& & & & &  & & \\
+				& & & & & & & \\
+				
+				\bottomrule
+			\end{tabular}
+		\end{adjustbox}
+		\caption{Features used as input for the RF classifier.}
+		\label{tab:comparison}
+		%\end{adjustbox}
+	\end{centering}
+\end{table*}
 
 \section{Figures}   
 
